@@ -32,27 +32,27 @@
                         <td>
                             <div class="geek-form-input">
                                 <img class="geek-input-logo" src="../images/user.svg" alt="username"/>
-                                <input class="geek-input" type="text" id="username" placeholder="用户名：root">
+                                <input class="geek-input" type="text" id="username" placeholder="用户名" value="root">
                             </div>
                         </td>
                         <td>密码</td>
                         <td>
                             <div class="geek-form-input">
                                 <img class="geek-input-logo" src="../images/password.svg" alt="password"/>
-                                <input class="geek-input" type="password" id="password" placeholder="密码：123456">
+                                <input class="geek-input" type="password" id="password" placeholder="密码" value="root">
                             </div>
                         </td>
                         <td>IP地址</td>
                         <td>
                             <div class="geek-form-input">
                                 <img class="geek-input-logo" src="../images/ip.svg" alt="ip"/>
-                                <input class="geek-input center" type="text" id="ip0" oninput="if(value.length>3)value=value.slice(0,3)">
+                                <input class="geek-input center" type="text" id="ip0" oninput="if(value.length>3)value=value.slice(0,3)" value="127">
                                 <span>.</span>
-                                <input class="geek-input center" type="text" id="ip1" oninput="if(value.length>3)value=value.slice(0,3)">
+                                <input class="geek-input center" type="text" id="ip1" oninput="if(value.length>3)value=value.slice(0,3)" value="0">
                                 <span>.</span>
-                                <input class="geek-input center" type="text" id="ip2" oninput="if(value.length>3)value=value.slice(0,3)">
+                                <input class="geek-input center" type="text" id="ip2" oninput="if(value.length>3)value=value.slice(0,3)" value="0">
                                 <span>.</span>
-                                <input class="geek-input center" type="text" id="ip3" oninput="if(value.length>3)value=value.slice(0,3)">
+                                <input class="geek-input center" type="text" id="ip3" oninput="if(value.length>3)value=value.slice(0,3)" value="1">
                             </div>
                         </td>
                         <td>数据库版本</td>
@@ -60,9 +60,9 @@
                             <div class="geek-form-input">
                                 <img class="geek-input-logo" src="../images/database.svg" alt="password"/>
                                 <select class="geek-select" id="version">
-                                    <option selected>请选择您的数据库版本 </option>
+                                    <option>请选择您的数据库版本</option>
                                     <option value="5">5.x</option>
-                                    <option value="5">8.x</option>
+                                    <option value="8" selected>8.x</option>
                                 </select>
                             </div>
                         </td>

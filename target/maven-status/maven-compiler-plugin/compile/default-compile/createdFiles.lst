@@ -4,6 +4,7 @@ cc\geekadmin\App.class
 cc\geekadmin\entity\Database.class
 cc\geekadmin\servlet\CodeServlet.class
 cc\geekadmin\entity\Table.class
+cc\geekadmin\servlet\DownloadServlet.class
 cc\geekadmin\utils\TemplateUtils.class
 cc\geekadmin\servlet\ServerServlet.class
 cc\geekadmin\server\SysFile.class

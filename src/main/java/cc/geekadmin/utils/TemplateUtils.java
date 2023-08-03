@@ -20,33 +20,36 @@ public class TemplateUtils {
 
     private static final String TEMPLATE_PATH = "/template/";
     private static final String CLASS_PATH = "code/";
+    private static final String PATH_DEFAULT = "D://GeekAdmin/";
+    private static final String PACKAGE_NAME = "code";
 
-    public static void generate(String path, Database database) {
-        generate(database, "model", path);
-        generate(database, "dao", path);
-        generate(database, "service", path);
-        generate(database, "InsertServlet", path);
-        generate(database, "DeleteServlet", path);
-        generate(database, "UpdateServlet", path);
-        generate(database, "SelectServlet", path);
-        generate(database, "EditServlet", path);
+
+    public static void generate(String path, Database database, String packageName) {
+        generate(database, "model", path, packageName);
+        generate(database, "dao", path, packageName);
+        generate(database, "service", path, packageName);
+        generate(database, "InsertServlet", path, packageName);
+        generate(database, "DeleteServlet", path, packageName);
+        generate(database, "UpdateServlet", path, packageName);
+        generate(database, "SelectServlet", path, packageName);
+        generate(database, "EditServlet", path, packageName);
     }
 
     public static void generate(Database database) {
-        generate(database, "model");
-        generate(database, "dao");
-        generate(database, "service");
-        generate(database, "InsertServlet");
-        generate(database, "DeleteServlet");
-        generate(database, "UpdateServlet");
-        generate(database, "SelectServlet");
-        generate(database, "EditServlet");
+        generate(database, "model", PATH_DEFAULT, PACKAGE_NAME);
+        generate(database, "dao", PATH_DEFAULT, PACKAGE_NAME);
+        generate(database, "service", PATH_DEFAULT, PACKAGE_NAME);
+        generate(database, "InsertServlet", PATH_DEFAULT, PACKAGE_NAME);
+        generate(database, "DeleteServlet", PATH_DEFAULT, PACKAGE_NAME);
+        generate(database, "UpdateServlet", PATH_DEFAULT, PACKAGE_NAME);
+        generate(database, "SelectServlet", PATH_DEFAULT, PACKAGE_NAME);
+        generate(database, "EditServlet", PATH_DEFAULT, PACKAGE_NAME);
     }
 
-    public static void zipGenerate(Database database, String sourceFolderPath) throws IOException {
-        String zipFilePath = sourceFolderPath + File.separator + database.getDataBasesName() + ".zip";
+    public static void zipGenerate(String zipName, String sourceFolderPath) throws IOException {
+        String zipFilePath = sourceFolderPath + File.separator + zipName + ".zip";
         ZipOutputStream out = new ZipOutputStream(Files.newOutputStream(Paths.get(zipFilePath)));
-        compress(out, new File(sourceFolderPath + File.separator + database.getDataBasesName()), database.getDataBasesName());
+        compress(out, new File(sourceFolderPath + File.separator + zipName), zipName);
         out.close();
     }
 
@@ -61,13 +64,25 @@ public class TemplateUtils {
     }
 
     /**
-     * 根据 数据库 文件类型 生成对应的代码文件
+     * 根据 数据库 文件类型 保存路径 生成对应的代码文件
      *
      * @param database 数据库
      * @param type     需要生成的文件类型
      * @param path     生成代码的保存路径
      */
     public static void generate(Database database, String type, String path) {
+        generate(database, type, path, database.getDataBasesName());
+    }
+
+    /**
+     * 根据 数据库 文件类型 保存路径 包名 生成对应的代码文件
+     *
+     * @param database    数据库
+     * @param type        需要生成的文件类型
+     * @param path        生成代码的保存路径
+     * @param packageName 生成代码的包名
+     */
+    public static void generate(Database database, String type, String path, String packageName) {
         Writer out = null;
         try {
             for (Table table : database.getTables()) {
@@ -79,7 +94,7 @@ public class TemplateUtils {
                 Map<String, Object> dataMap = new HashMap<String, Object>();
                 dataMap.put("SystemUser", System.getenv("USERNAME"));
                 dataMap.put("DateTime", new Date());
-                dataMap.put("classPath", "cc.geekadmin." + database.getDataBasesName());
+                dataMap.put("classPath", "cc.geekadmin." + packageName);
                 dataMap.put("className", StringUtils.UnderlineToHump(StringUtils.Uppercase(table.getTableName())));
                 dataMap.put("columns", table.getColumns());
                 dataMap.put("tableName", table.getTableName());
@@ -87,10 +102,10 @@ public class TemplateUtils {
                 Template template = configuration.getTemplate("\\" + type + ".ftl");
                 // 生成数据
                 ArrayList<File> files = new ArrayList<File>();
-                files.add(new File(path + File.separator + database.getDataBasesName() + "/model/"));
-                files.add(new File(path + File.separator + database.getDataBasesName() + "/dao/"));
-                files.add(new File(path + File.separator + database.getDataBasesName() + "/service/"));
-                files.add(new File(path + File.separator + database.getDataBasesName() + "/servlet/"));
+                files.add(new File(path + File.separator + packageName + "/model/"));
+                files.add(new File(path + File.separator + packageName + "/dao/"));
+                files.add(new File(path + File.separator + packageName + "/service/"));
+                files.add(new File(path + File.separator + packageName + "/servlet/"));
                 //如果目录不存在则创建
                 for (File file : files) {
                     if (!file.exists() && !file.isDirectory()) {
@@ -99,11 +114,11 @@ public class TemplateUtils {
                 }
                 StringBuilder fileName;
                 if ("model".equals(type)) {
-                    fileName = new StringBuilder(path + database.getDataBasesName() + "/" + type + "/").append(StringUtils.Uppercase(StringUtils.UnderlineToHump(table.getTableName()))).append(".java");
+                    fileName = new StringBuilder(path + packageName + "/" + type + "/").append(StringUtils.Uppercase(StringUtils.UnderlineToHump(table.getTableName()))).append(".java");
                 } else if ("dao".equals(type) || "service".equals(type)) {
-                    fileName = new StringBuilder(path + database.getDataBasesName() + "/" + type + "/").append(StringUtils.Uppercase(StringUtils.UnderlineToHump(table.getTableName()))).append(StringUtils.Uppercase(type)).append(".java");
+                    fileName = new StringBuilder(path + packageName + "/" + type + "/").append(StringUtils.Uppercase(StringUtils.UnderlineToHump(table.getTableName()))).append(StringUtils.Uppercase(type)).append(".java");
                 } else {
-                    fileName = new StringBuilder(path + database.getDataBasesName() + "/servlet/").append(StringUtils.Uppercase(StringUtils.UnderlineToHump(table.getTableName()))).append(StringUtils.Uppercase(type)).append(".java");
+                    fileName = new StringBuilder(path + packageName + "/servlet/").append(StringUtils.Uppercase(StringUtils.UnderlineToHump(table.getTableName()))).append(StringUtils.Uppercase(type)).append(".java");
                 }
                 File docFile = new File(fileName.toString());
                 out = new BufferedWriter(new OutputStreamWriter(Files.newOutputStream(docFile.toPath())));
