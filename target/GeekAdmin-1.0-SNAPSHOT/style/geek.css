@@ -1,0 +1,367 @@
+* {
+    padding: 0;
+    margin: 0;
+    transition: all 0.2s linear 0s;
+    scrollbar-width: thin;
+    scrollbar-base-color: green;
+    scrollbar-track-color: red;
+    scrollbar-arrow-color: blue;
+}
+
+*::-webkit-scrollbar {
+    width: 6px;
+}
+
+*::-webkit-scrollbar-thumb {
+    background: #ccc;
+    border-radius: 5px;
+}
+
+html,
+body {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(255, 255, 255, 1);
+}
+
+details {
+    flex-grow: 1;
+    border: 1px solid #aaa;
+    border-radius: 4px;
+    padding: 10px;
+    margin: 10px;
+}
+
+summary {
+    font-weight: bold;
+    padding: 8px;
+}
+
+details[open] > summary {
+    border-bottom: 1px solid #aaa;
+    margin-bottom: 8px;
+}
+
+.geek-card {
+    border-radius: 6px;
+    box-shadow: 0px 12px 32px 4px rgba(0, 0, 0, .04), 0px 8px 20px rgba(0, 0, 0, .08);
+    background-color: rgba(255, 255, 255, 0.8);
+    box-sizing: border-box;
+}
+
+.geek-card.suspension {
+    box-shadow: none;
+    background-color: rgba(225, 235, 255, 0.8);
+}
+
+.geek-card.suspension:hover {
+    box-shadow: 0 14px 24px rgba(155, 155, 155, 1);
+}
+
+.geek-flex {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    box-sizing: border-box;
+    flex-wrap: wrap;
+    align-content: flex-start;
+}
+
+.geek-main {
+    width: 98%;
+    height: 96%;
+    background-color: rgba(255, 255, 255, 0);
+    align-items: flex-start;
+}
+
+.geek-icon {
+    width: 20px;
+    height: 20px;
+    padding: 0 10px;
+}
+
+/* Navigation */
+.geek-navigation {
+    height: 100%;
+    box-sizing: border-box;
+}
+
+.geek-navigation.open {
+    width: 260px;
+    padding: 20px 10px;
+}
+
+.geek-navigation.close {
+    width: 60px;
+    padding: 20px 10px;
+}
+
+.geek-navigation .current {
+    color: rgba(0, 140, 255, 1);
+}
+
+.geek-navigation span {
+    overflow: hidden;
+    white-space: nowrap;
+    display: inline-block;
+}
+
+.geek-navigation-top {
+    height: 60px;
+    color: rgba(64, 158, 240, 1);
+    font-size: 22px;
+    font-weight: bold;
+    flex-wrap: nowrap;
+    cursor: pointer;
+}
+
+.geek-navigation .geek-navigation-list {
+    height: calc(100vh - 100px);
+    overflow: hidden;
+    box-sizing: border-box;
+}
+
+.geek-navigation .geek-navigation-list:hover {
+    overflow: auto;
+}
+
+.geek-navigation ul li {
+    width: 100%;
+    height: 60px;
+    margin: 10px 0;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    list-style: none;
+    border-radius: 10px;
+    flex-wrap: nowrap;
+}
+
+.geek-navigation ul li:hover {
+    background: rgba(236, 245, 255, 1.0);
+}
+
+.geek-navigation.close span, .geek-navigation.close .geek-navigation-logo {
+    display: none;
+}
+
+/* Content  */
+.geek-content {
+    flex-grow: 1;
+    height: 100%;
+    margin-left: 10px;
+}
+
+/* Top */
+.geek-top {
+    width: 100%;
+    height: 50px;
+}
+
+.geek-top .geek-tabs {
+    flex-grow: 1;
+    height: 50px;
+}
+
+.geek-top .geek-menus {
+    width: 300px;
+    margin-left: 10px;
+    height: 50px;
+}
+
+/* Page */
+.geek-page {
+    width: 100%;
+    margin-top: 10px;
+    height: calc(96vh - 60px);
+}
+
+/* Table */
+/*表格样式*/
+.geek-table {
+    width: 96%;
+    padding: 1%;
+    border-radius: 6px;
+    margin: 10px auto;
+    border-collapse: collapse;
+}
+
+.geek-table th,
+.geek-table td {
+    height: 40px;
+    line-height: 25px;
+    text-align: center;
+    border: 1px solid #ccc;
+}
+
+.geek-table th {
+    font-size: 20px;
+    background: #eee;
+    font-weight: bold;
+}
+
+.geek-table tr:hover {
+    background: rgba(245, 245, 245, 1.0);
+}
+
+/* Button */
+.geek-button,
+.geek-button-fillet,
+.geek-button-green,
+.geek-button-blue,
+.geek-button-red,
+.geek-button-yellow {
+    cursor: pointer;
+    border-radius: 10px;
+    font-size: 16px;
+    background-color: rgba(255, 255, 255, 1);
+    border: 1px solid rgba(223, 223, 223, 1);
+    padding: 12px 20px;
+    margin: 3px;
+}
+
+.geek-button-fillet {
+    border-radius: 20px;
+}
+
+.geek-button-green,
+.geek-button-blue,
+.geek-button-red,
+.geek-button-yellow {
+    color: rgba(255, 255, 255, 1);
+}
+
+.geek-button-green {
+    background-color: rgba(0, 200, 150, 1);
+}
+
+.geek-button-blue {
+    background-color: rgba(0, 187, 255, 1);
+}
+
+.geek-button-red {
+    background-color: rgba(235, 0, 0, 1);
+}
+
+.geek-button-yellow {
+    background-color: rgba(243, 220, 89, 1);
+}
+
+.geek-button:hover,
+.geek-button-fillet:hover {
+    background-color: rgba(211, 211, 211, 1);
+    border: 1px solid rgba(223, 223, 223, 0.6);
+}
+
+.geek-button-green:hover,
+.geek-button-blue:hover,
+.geek-button-red:hover,
+.geek-button-yellow:hover {
+    opacity: 0.6;
+    border: 1px solid rgba(223, 223, 223, 0.6);
+}
+
+
+/* Input */
+.geek-form-input {
+    padding: 0 10px;
+    border: 1px solid rgba(223, 223, 223, 1);
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    box-sizing: border-box;
+}
+
+.geek-form-input:hover {
+    border: 1px solid rgba(135, 135, 135, 1);
+}
+
+.geek-form-input:has(.geek-input:focus) {
+    border: 1px solid rgba(0, 150, 140, 1);
+}
+
+.geek-input {
+    height: 100%;
+    width: 100%;
+    margin: 10px;
+    background: none;
+    outline: none;
+    border: none;
+}
+
+.geek-input-logo {
+    width: 14px;
+    height: 14px;
+}
+
+/** Console */
+.geek-card.half {
+    margin: 5px;
+    font-size: 14px;
+    flex-basis: calc(50% - 10px);
+}
+
+.geek-card.row {
+    margin: 5px;
+    font-size: 14px;
+    flex-basis: calc(100% - 10px);
+}
+
+.geek-card.half h4, .geek-card.row h4 {
+    padding: 10px;
+    border-bottom: 1px solid rgba(230, 230, 230, 1.0);
+}
+
+/** select */
+.geek-select{
+    display: inline-block;
+    height: 100%;
+    width: 100%;
+    margin: 10px;
+    background: none;
+    outline: none;
+    border: none;
+}
+
+/* 下拉选项样式 */
+.geek-select option {
+    padding: 10px;
+}
+
+/* 下拉选项鼠标悬停样式 */
+.geek-select option:hover {
+    background-color: #e5e5e5;
+}
+
+
+.console-table {
+    width: calc(100% - 40px);
+    margin: 20px;
+    border-collapse: collapse;
+}
+
+.console-table th,
+.console-table td {
+    text-align: left;
+    padding: 8px;
+}
+
+.console-table th {
+    font-weight: bold;
+}
+
+.console-table tr {
+    border-top: 1px solid rgba(230, 230, 230, 1.0);
+}
+
+.console-table tr:first-child {
+    border: 0;
+}
+
+.console-table tbody tr:hover {
+    background: rgba(245, 245, 245, 1.0);
+}

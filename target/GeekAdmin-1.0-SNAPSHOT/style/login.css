@@ -1,0 +1,49 @@
+body {
+    background: url("../images/login_background.svg");
+}
+
+.login-card {
+    width: 96%;
+    height: 94%;
+    padding: 200px 50px;
+    justify-content: space-around;
+}
+
+.login-left-img {
+    width: 800px;
+}
+
+.login-form {
+    width: 500px;
+    padding: 45px 40px;
+    border-radius: 10px;
+    box-shadow: 2px 3px 7px #0003;
+}
+
+.login-logo {
+    padding-bottom: 45px;
+}
+
+.login-logo img {
+    width: 70px;
+    height: 70px;
+}
+
+.login-logo h2 {
+    display: block;
+    font-size: 42px;
+}
+
+.login-button button {
+    width: 160px;
+}
+
+.login-username, .login-password {
+    width: 420px;
+    height: 40px;
+    margin-bottom: 40px;
+}
+
+.login-button {
+    justify-content: space-evenly;
+}

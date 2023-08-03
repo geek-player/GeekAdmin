@@ -1,0 +1,105 @@
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://maven.apache.org/POM/4.0.0"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>cc.geekadmin</groupId>
+    <artifactId>GeekAdmin</artifactId>
+    <version>1.0-SNAPSHOT</version>
+    <packaging>war</packaging>
+
+    <name>Geek-Admin</name>
+    <description>基于原生Java web的快速开发框架</description>
+
+    <!-- 版 本 管 理 -->
+    <properties>
+
+        <!-- JDK 版本 -->
+        <java.version>1.8</java.version>
+        <!-- 数 据 库 连 接 工 具 -->
+        <mysql.version>8.0.28</mysql.version>
+        <!-- C3P0 版 本 -->
+        <c3p0.version>0.9.1.2</c3p0.version>
+        <!-- Servlet 版 本 -->
+        <servlet.version>4.0.1</servlet.version>
+        <!-- JSTL 版 本 -->
+        <jstl.version>1.2</jstl.version>
+        <!-- FastJson 版 本 -->
+        <fastjson.version>1.2.83</fastjson.version>
+        <!-- Tomcat 版 本 -->
+        <tomcat.version>8.5.84</tomcat.version>
+        <!-- FreeMarker 版 本 -->
+        <freemarker.version>2.3.30</freemarker.version>
+        <!-- oshi 版 本 -->
+        <oshi.version>6.4.0</oshi.version>
+
+    </properties>
+
+    <dependencies>
+
+        <!-- 数 据 库 连 接 工 具 -->
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>${mysql.version}</version>
+        </dependency>
+
+        <!-- C3P0连接池 -->
+        <dependency>
+            <groupId>c3p0</groupId>
+            <artifactId>c3p0</artifactId>
+            <version>${c3p0.version}</version>
+        </dependency>
+
+        <!-- Servlet -->
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>javax.servlet-api</artifactId>
+            <version>${servlet.version}</version>
+        </dependency>
+
+        <!-- JSTL -->
+        <dependency>
+            <groupId>jstl</groupId>
+            <artifactId>jstl</artifactId>
+            <version>${jstl.version}</version>
+        </dependency>
+
+        <!-- FastJson -->
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>fastjson</artifactId>
+            <version>${fastjson.version}</version>
+        </dependency>
+
+        <!-- FreeMarker -->
+        <dependency>
+            <groupId>org.freemarker</groupId>
+            <artifactId>freemarker</artifactId>
+            <version>${freemarker.version}</version>
+        </dependency>
+
+        <!--oshi -->
+        <dependency>
+            <groupId>com.github.oshi</groupId>
+            <artifactId>oshi-core</artifactId>
+            <version>${oshi.version}</version>
+        </dependency>
+
+    </dependencies>
+
+    <build>
+
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>8</source>
+                    <target>8</target>
+                </configuration>
+            </plugin>
+        </plugins>
+
+    </build>
+
+</project>
