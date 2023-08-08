@@ -1,9 +1,7 @@
-var index = 1;
-
 $('#connect').click(function () {
     if (check()) {
         $.ajax({
-            url: "http://localhost:8080/GeekAdmin/CodeServlet",
+            url: "../CodeServlet",
             type: "post",
             dataType: "json",
             data: {
@@ -18,7 +16,7 @@ $('#connect').click(function () {
                 if (result.code === 200) {
                     createToast("success", "连接成功！", "../");
                     card = $("div[class='geek-card row']:last");
-                    var div = $("<div class='geek-card row' id=block-" + index++ + "'></div>")
+                    var div = $("<div class='geek-card row'></div>")
                     var table =
                         $("<table class='geek-table' id='database' style='display: none;'>" +
                             "<tr>\n" +
@@ -64,53 +62,11 @@ $('#connect').click(function () {
 })
 
 function download(zipName) {
-
     var a = document.createElement("a");
     a.href =  "../DownloadServlet?zipName=" + zipName;
     a.style.display = 'none'
     a.click();
     a.remove();
-
-    // ajax支持的服务器返回数据类型有：xml、json、script、html，
-    // 其他类型(例如二进制流)将被作为String返回，无法触发浏览器的下载处理机制和程序。
-    // $.ajax({
-    //     url: "../DownloadServlet",
-    //     method: "get",
-    //     data: {
-    //         zipName: zipName,
-    //     },
-    //     success: function (result, state, xhr) {//3个参数
-    //         //result:请求到的结果数据
-    //         //state:请求状态（success）
-    //         //xhr:XMLHttpRequest对象
-    //
-    //         // 从Response Headers中获取fileName
-    //         let fileName = xhr.getResponseHeader('Content-Disposition').split(';')[1].split('=')[1].replace(/\"/g, '')
-    //         //获取下载文件的类型
-    //         let type = xhr.getResponseHeader("content-type")
-    //         //结果数据类型处理
-    //         let blob = new Blob([result], { type: type })
-    //
-    //         //对于<a>标签，只有 Firefox 和 Chrome（内核）支持 download 属性
-    //         //IE10以上支持blob，但是依然不支持download
-    //         if ('download' in document.createElement('a')) {//支持a标签download的浏览器
-    //             //通过创建a标签实现
-    //             let link = document.createElement("a");
-    //             //文件名
-    //             link.download = fileName;
-    //             link.style.display = "none"
-    //             link.href = URL.createObjectURL(blob);
-    //             document.body.appendChild(link);
-    //             link.click();//执行下载
-    //             URL.revokeObjectURL(link.href);//释放url
-    //             document.body.removeChild(link);//释放标签
-    //         } else {//不支持
-    //             if (window.navigator.msSaveOrOpenBlob) {
-    //                 window.navigator.msSaveOrOpenBlob(blob, fileName)
-    //             }
-    //         }
-    //     },
-    // })
 }
 
 function check() {
