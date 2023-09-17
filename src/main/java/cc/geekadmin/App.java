@@ -13,6 +13,7 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.Objects;
 import java.util.zip.ZipOutputStream;
 
 /**
@@ -27,11 +28,12 @@ public class App {
 //        Database database = databaseUtils.getDatabase();
 //        System.out.println(database);
 
-        String zipFilePath = "D:/Java/apache-tomcat-8.5.84/webapps/GeekAdmin/test.zip";
-        ZipOutputStream out = new ZipOutputStream(Files.newOutputStream(Paths.get(zipFilePath)));
-        TemplateUtils.compress(out, new File("D:/Java/apache-tomcat-8.5.84/webapps/GeekAdmin" + File.separator + "test"), "test");
-        out.close();
+//        String zipFilePath = "D:/Java/apache-tomcat-8.5.84/webapps/GeekAdmin/test.zip";
+//        ZipOutputStream out = new ZipOutputStream(Files.newOutputStream(Paths.get(zipFilePath)));
+//        TemplateUtils.compress(out, new File("D:/Java/apache-tomcat-8.5.84/webapps/GeekAdmin" + File.separator + "test"), "test");
+//        out.close();
 
+        TemplateUtils.generate(new DatabaseUtils().getDatabase());
 
 
         // 创建数据库类型
@@ -99,7 +101,7 @@ public class App {
     private static String getTableRemarksName(String tableName){
         String tableRemarksName = "" ;
         try {
-            PreparedStatement preparedStatement = JDBC.getConnection().prepareStatement("SELECT table_comment FROM information_schema.TABLES WHERE table_schema = ( SELECT DATABASE () ) AND table_name = '" + tableName + "'");
+            PreparedStatement preparedStatement = Objects.requireNonNull(JDBC.getConnection()).prepareStatement("SELECT table_comment FROM information_schema.TABLES WHERE table_schema = ( SELECT DATABASE () ) AND table_name = '" + tableName + "'");
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
                 tableRemarksName = resultSet.getString(1) ;
